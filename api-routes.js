@@ -12,9 +12,6 @@ router
   .route("/locations")
   .get(locationController.index)
   .post(locationController.new);
-router
-  .route("/locations/:location_id")
-  .put(locationController.update)
-  .delete(locationController.delete);
+router.route("/locations/:location_id").delete(locationController.delete);
 
 module.exports = router;

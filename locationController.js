@@ -10,7 +10,7 @@ exports.index = function(req, res) {
     }
     res.json({
       status: "success",
-      message: "Location retrieved successfully",
+      message: "Retrieved location",
       data: locations
     });
   });
@@ -25,31 +25,14 @@ exports.new = function(req, res) {
   location.save(function(err) {
     if (err) res.json(err);
     res.json({
-      message: "New location created!",
+      message: "Added location",
       data: location
     });
   });
 };
 
-exports.update = function(req, res) {
-  Location.findById(req.params.location_id, function(err, location) {
-    if (err) res.send(err);
-    location.name = req.body.name ? req.body.name : location.name;
-    location.latitude = req.body.latitude;
-    location.longitude = req.body.longitude;
-
-    location.save(function(err) {
-      if (err) res.json(err);
-      res.json({
-        message: "Location updated",
-        data: location
-      });
-    });
-  });
-};
-
 exports.delete = function(req, res) {
-  Location.remove(
+  Location.deleteOne(
     {
       _id: req.params.location_id
     },
@@ -57,7 +40,7 @@ exports.delete = function(req, res) {
       if (err) res.send(err);
       res.json({
         status: "success",
-        message: "Location deleted"
+        message: "Removed location"
       });
     }
   );
