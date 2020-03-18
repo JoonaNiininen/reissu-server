@@ -6,12 +6,12 @@ router.get("/", function(req, res) {
   });
 });
 
-var locationController = require("./locationController");
+var tripController = require("./tripController");
 
 router
-  .route("/locations")
-  .get(locationController.index)
-  .post(locationController.new);
-router.route("/locations/:location_id").delete(locationController.delete);
+  .route("/trips")
+  .get(tripController.index)
+  .post(tripController.new);
+router.route("/trips/:trip_id").delete(tripController.delete);
 
 module.exports = router;
