@@ -21,15 +21,15 @@ exports.new = function(req, res) {
   var tripId = req.body.tripName;
   var locations = body.locations;
 
-  for (i = 0; i < body.locations.length; i++) {
+  for (i = 0; i < locations.length; i++) {
     Trip.updateOne(
-      { tripName: body.tripName },
+      { tripName: tripId },
       {
         $push: {
           locations: {
-            name: body.locations[i].name,
-            latitude: body.locations[i].latitude,
-            longitude: body.locations[i].longitude
+            name: locations[i].name,
+            latitude: locations[i].latitude,
+            longitude: locations[i].longitude
           }
         }
       },
@@ -37,21 +37,16 @@ exports.new = function(req, res) {
       function(err) {
         if (err) {
           res.json(err);
-          console.log(err);
           return;
         }
       }
     );
   }
-
   res.json({
     message: "Successfully added trip"
   });
 
-  getDistance(locations, tripId);
-
-  //var tripDistance = getDistance(locations);
-  //console.log(tripDistance + " DISTANCE");
+  setTripDistance(locations, tripId);
 };
 
 exports.delete = function(req, res) {
@@ -81,25 +76,21 @@ exports.deleteAll = function(req, res) {
   });
 };
 
-function getDistance(locations, tripId) {
+function setTripDistance(locations, tripId) {
   var locationArray = [];
-  var temporaryLatitude;
-  var temporaryLongitude;
-  var newArray = [];
   var homeCoords = [[23.607845, 64.015312]];
   var totalKm = 0;
   locationArray = locationArray.concat(homeCoords);
 
   for (i = 0; i < locations.length; i++) {
-    temporaryLatitude = body.locations[i].latitude;
-    temporaryLongitude = body.locations[i].longitude;
-    newArray = [[temporaryLongitude, temporaryLatitude]];
-    locationArray = locationArray.concat(newArray);
+    locationArray = locationArray.concat([
+      [body.locations[i].longitude, body.locations[i].latitude]
+    ]);
   }
 
   locationArray = locationArray.concat(homeCoords);
-  var locationsQuery = "";
-  locationsQuery = JSON.stringify(locationArray);
+  console.log(locationArray);
+  var locationsQuery = JSON.stringify(locationArray);
 
   var request = require("request");
 
@@ -126,23 +117,16 @@ function getDistance(locations, tripId) {
         if (i != locations.length + 1) {
           ii = i + 1;
           totalKm = totalKm + data.distances[i][ii];
-          console.log(totalKm);
         }
       }
-      console.log(totalKm);
       Trip.updateOne({ tripName: tripId }, { tripDistance: totalKm }, function(
         err
       ) {
         if (err) {
           res.json(err);
-          console.log(err);
           return;
         }
-        console.log("DB Updated with trip distance");
       });
     }
   );
-
-  //console.log(totalKm);
-  //return totalKm;
 }
