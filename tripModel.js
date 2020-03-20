@@ -1,29 +1,27 @@
 var mongoose = require("mongoose");
 
 var tripSchema = mongoose.Schema({
-  created_at: {
-    type: Date,
-    default: Date.now
-  },
+  tripDistance: String,
   tripName: {
-    type: String
+    type: String,
+    required: true
   },
   locations: [
     {
-      location: {
-        name: {
-          type: String,
-          required: true
-        },
-        latitude: {
-          type: String,
-          required: true
-        },
-        longitude: {
-          type: String,
-          required: true
-        }
+      //location: {
+      name: {
+        type: String,
+        required: true
+      },
+      latitude: {
+        type: String,
+        required: true
+      },
+      longitude: {
+        type: String,
+        required: true
       }
+      //}
     }
   ]
 });
