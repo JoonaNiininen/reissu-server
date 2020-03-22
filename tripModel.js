@@ -8,7 +8,6 @@ var tripSchema = mongoose.Schema({
   },
   locations: [
     {
-      //location: {
       name: {
         type: String,
         required: true
@@ -21,7 +20,6 @@ var tripSchema = mongoose.Schema({
         type: String,
         required: true
       }
-      //}
     }
   ]
 });
