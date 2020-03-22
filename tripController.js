@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path:
+    "C:\\Users\\Joona\\Documents\\JS\\reissuvahti\\reissu-server\\apikey.env"
+});
 Trip = require("./tripModel");
 
 exports.index = function(req, res) {
@@ -18,7 +22,7 @@ exports.index = function(req, res) {
 
 exports.new = function(req, res) {
   body = req.body;
-  var tripId = req.body.tripName;
+  var tripId = body.tripName;
   var locations = body.locations;
 
   for (i = 0; i < locations.length; i++) {
@@ -105,8 +109,7 @@ function setTripDistance(locations, tripId) {
       headers: {
         Accept:
           "application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8",
-        Authorization:
-          "5b3ce3597851110001cf6248f5dde61d0afc45129e4516211279205b",
+        Authorization: "" + process.env.MATRIX_API_KEY,
         "Content-Type": "application/json; charset=utf-8"
       }
     },
@@ -123,7 +126,7 @@ function setTripDistance(locations, tripId) {
         err
       ) {
         if (err) {
-          res.json(err);
+          response.json(err);
           return;
         }
       });
