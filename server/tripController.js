@@ -1,6 +1,5 @@
 require("dotenv").config({
-  path:
-    "C:\\Users\\Joona\\Documents\\JS\\reissuvahti\\reissu-server\\server\\apikey.env"
+  path: "apikey.env"
 });
 Trip = require("./tripModel");
 

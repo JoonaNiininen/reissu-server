@@ -1,6 +1,5 @@
 require("dotenv").config({
-  path:
-    "C:\\Users\\Joona\\Documents\\JS\\reissuvahti\\reissu-server\\server\\constants.env"
+  path: "constants.env"
 });
 
 let bodyParser = require("body-parser");
