@@ -7,6 +7,7 @@ router.get("/", function(req, res) {
 });
 
 var tripController = require("./tripController");
+var userController = require("./userController");
 
 router
   .route("/trips")
@@ -14,5 +15,12 @@ router
   .post(tripController.new)
   .delete(tripController.deleteAll);
 router.route("/trips/:trip_id").delete(tripController.delete);
+router
+  .route("/users")
+  .get(userController.index)
+  .post(userController.new)
+  .delete(userController.deleteAll);
+router.route("/users/coordinates").post(userController.getHomeCoordinates);
+router.route("/users/:user_id").delete(userController.deleteUser);
 
 module.exports = router;

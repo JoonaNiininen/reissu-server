@@ -1,7 +1,8 @@
 require("dotenv").config({
   path: "apikey.env"
 });
-Trip = require("./tripModel");
+
+Trip = require("./tripSchema");
 
 exports.index = function(req, res) {
   Trip.find(function(err, trips) {
@@ -49,7 +50,7 @@ exports.new = function(req, res) {
     message: "Successfully added trip"
   });
 
-  setTripDistance(locations, tripId);
+  //setTripDistance(locations, tripId);
 };
 
 exports.delete = function(req, res) {
@@ -79,7 +80,7 @@ exports.deleteAll = function(req, res) {
   });
 };
 
-function setTripDistance(locations, tripId) {
+function setTripDistance(user, locations, tripId) {
   var locationArray = [];
   var homeCoords = [[23.607845, 64.015312]];
   var totalKm = 0;
