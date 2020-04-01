@@ -1,4 +1,8 @@
 constants.env
 apikey.env
 server/Dockerfile
+<<<<<<< HEAD
 node_modules
+=======
+node_modules/
+>>>>>>> a414390c380c0517dbc0d464c572fe1812b81ead
