@@ -23,7 +23,7 @@ var db = mongoose.connection;
 app.get("/", (req, res) => res.send("Connection OK"));
 
 app.listen(port, function() {
-  console.log("Server listening on port " + port);
+  console.log("Server listening");
 });
 
 app.use("/api", apiRoutes);

@@ -6,8 +6,8 @@ var userSchema = mongoose.Schema({
     required: true
   },
   homeCoordinates: {
-    type: String,
-    required: true
+    latitude: Number,
+    longitude: Number
   }
 });
 

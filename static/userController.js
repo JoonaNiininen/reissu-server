@@ -36,7 +36,7 @@ exports.new = function(req, res) {
     { upsert: true },
     function(err) {
       if (err) {
-        res.json(err);
+        res.json("error");
         return;
       }
     }
@@ -52,7 +52,7 @@ exports.delete = function(req, res) {
       _id: req.params.trip_id
     },
     function(err, trip) {
-      if (err) res.send(err);
+      if (err) res.send("error");
       res.json({
         status: "success",
         message: "Removed user"
@@ -65,7 +65,7 @@ exports.deleteAll = function(req, res) {
   User.deleteMany(function(err, trip) {
     {
     }
-    if (err) res.send(err);
+    if (err) res.send("error");
     res.json({
       status: "success",
       message: "Removed all users"
@@ -79,7 +79,7 @@ exports.deleteUser = function(req, res) {
       _id: req.params.user_id
     },
     function(err, user) {
-      if (err) res.send(err);
+      if (err) res.send("error");
       res.json({
         status: "success",
         message: "Removed user"
