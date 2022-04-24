@@ -13,13 +13,11 @@ router
   .route("/trips")
   .get(tripController.index)
   .post(tripController.new)
-  .delete(tripController.deleteAll);
 router.route("/trips/:trip_id").delete(tripController.delete);
 router
   .route("/users")
   .get(userController.index)
-  .post(userController.new)
-  .delete(userController.deleteAll);
+  .post(userController.createUser)
 router.route("/users/coordinates").post(userController.getHomeCoordinates);
 router.route("/users/:user_id").delete(userController.deleteUser);
 

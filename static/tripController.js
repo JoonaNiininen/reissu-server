@@ -22,11 +22,11 @@ exports.index = function(req, res) {
 
 exports.new = function(req, res) {
   body = req.body;
-  var tripId = body.tripName;
+  var tripId = body.tripDate;
   var locations = body.locations;
   var user = body.userName;
   Trip.updateOne(
-    { tripName: tripId, userName: user },
+    { tripDate: tripId, userName: user },
     {
       $push: {
         locations: { $each: locations }
@@ -35,7 +35,7 @@ exports.new = function(req, res) {
     { upsert: true },
     function(err) {
       if (err) {
-        res.json("error");
+        res.json("Couldn't create trip");
         return;
       }
     }

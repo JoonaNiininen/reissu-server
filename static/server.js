@@ -1,4 +1,6 @@
-require("dotenv").config({path:"/usr/src/reissu-server/server/constants.env"});
+require("dotenv").config({
+  path: "protected.env"
+});
 
 let bodyParser = require("body-parser");
 let mongoose = require("mongoose");

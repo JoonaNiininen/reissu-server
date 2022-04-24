@@ -25,7 +25,7 @@ exports.getHomeCoordinates = function(req, res) {
   });
 };
 
-exports.new = function(req, res) {
+exports.createUser = function(req, res) {
   body = req.body;
 
   User.updateOne(
@@ -44,21 +44,6 @@ exports.new = function(req, res) {
   res.json({
     message: "Successfully added user"
   });
-};
-
-exports.delete = function(req, res) {
-  User.deleteOne(
-    {
-      _id: req.params.trip_id
-    },
-    function(err, trip) {
-      if (err) res.send("error");
-      res.json({
-        status: "success",
-        message: "Removed user"
-      });
-    }
-  );
 };
 
 exports.deleteAll = function(req, res) {
