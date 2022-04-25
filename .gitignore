@@ -1,4 +1,2 @@
-constants.env
-apikey.env
-server/Dockerfile
-node_modules/
+protected.env
+node_modules

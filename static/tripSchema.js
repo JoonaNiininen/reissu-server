@@ -1,8 +1,9 @@
 var mongoose = require("mongoose");
 
 var tripSchema = mongoose.Schema({
+  userName: String,
   tripDistance: String,
-  tripName: {
+  tripDate: {
     type: String,
     required: true
   },

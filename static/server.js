@@ -1,5 +1,5 @@
 require("dotenv").config({
-  path: "constants.env"
+  path: "protected.env"
 });
 
 let bodyParser = require("body-parser");
